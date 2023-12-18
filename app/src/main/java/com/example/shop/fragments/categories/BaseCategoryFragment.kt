@@ -13,6 +13,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.kelineyt.adapters.BestProductsAdapter
 import com.example.shop.R
 
 open class BaseCategoryFragment: Fragment(R.layout.fragment_base_category) {
