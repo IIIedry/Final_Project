@@ -7,8 +7,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
-import com.bumptech.glide.load.engine.Resource
-import com.example.kelineyt.viewmodel.CartViewModel
 import com.example.shop.databinding.ActivityShoppingBinding
 import com.example.shop.util.Resource
 import com.example.shop.viewmodel.CartViewModel
@@ -38,12 +36,14 @@ class ShoppingActivity : AppCompatActivity() {
                 when (it) {
                     is Resource.Success -> {
                         val count = it.data?.size ?: 0
-                        val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottomNavigation)
+                        val bottomNavigation =
+                            findViewById<BottomNavigationView>(R.id.bottomNavigation)
                         bottomNavigation.getOrCreateBadge(R.id.cartFragment).apply {
                             number = count
                             backgroundColor = resources.getColor(R.color.g_blue)
                         }
                     }
+
                     else -> Unit
                 }
             }

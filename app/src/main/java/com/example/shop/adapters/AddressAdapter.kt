@@ -9,6 +9,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.shop.R
+import com.example.shop.data.Address
+import com.example.shop.databinding.AddressRvItemBinding
 
 class AddressAdapter : Adapter<AddressAdapter.AddressViewHolder>() {
 

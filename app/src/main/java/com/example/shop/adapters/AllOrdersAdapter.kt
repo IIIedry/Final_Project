@@ -8,6 +8,10 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView.Adapter
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.shop.R
+import com.example.shop.data.order.Order
+import com.example.shop.data.order.OrderStatus
+import com.example.shop.data.order.getOrderStatus
+import com.example.shop.databinding.OrderItemBinding
 
 class AllOrdersAdapter : Adapter<AllOrdersAdapter.OrdersViewHolder>() {
 
