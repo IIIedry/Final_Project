@@ -8,6 +8,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.bumptech.glide.load.engine.Resource
+import com.example.kelineyt.viewmodel.CartViewModel
 import com.example.shop.databinding.ActivityShoppingBinding
 import com.example.shop.util.Resource
 import com.example.shop.viewmodel.CartViewModel
