@@ -14,6 +14,9 @@ import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.kelineyt.adapters.ColorsAdapter
+import com.example.kelineyt.adapters.SizesAdapter
+import com.example.kelineyt.adapters.ViewPager2Images
 import com.example.shop.R
 import com.example.shop.data.order.CartProduct
 import com.google.android.material.bottomnavigation.BottomNavigationView
