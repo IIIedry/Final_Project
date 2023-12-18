@@ -1,4 +1,4 @@
-package com.example.kelineyt.util
+package com.example.shop.util
 
 import android.util.Patterns
 

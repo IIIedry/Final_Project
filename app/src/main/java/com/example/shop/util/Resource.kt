@@ -1,4 +1,4 @@
-package com.example.kelineyt.util
+package com.example.shop.util
 
 sealed class Resource<T>(
     val data: T? = null,
