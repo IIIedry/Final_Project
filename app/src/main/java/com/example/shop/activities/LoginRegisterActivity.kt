@@ -1,4 +1,4 @@
-package com.example.kelineyt.activities
+package com.example.shop.activities
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

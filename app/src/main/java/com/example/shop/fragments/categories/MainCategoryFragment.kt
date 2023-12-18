@@ -20,6 +20,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.kelineyt.adapters.BestDealsAdapter
 import com.example.kelineyt.adapters.BestProductsAdapter
 import com.example.kelineyt.adapters.SpecialProductsAdapter
+import com.example.shop.adapters.BestDealsAdapter
+import com.example.shop.adapters.BestProductsAdapter
+import com.example.shop.adapters.SpecialProductsAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 

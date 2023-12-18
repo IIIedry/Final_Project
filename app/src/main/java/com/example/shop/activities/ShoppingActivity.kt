@@ -1,4 +1,4 @@
-package com.example.kelineyt.activities
+package com.example.shop.activities
 
 import android.os.Bundle
 import android.util.Log

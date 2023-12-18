@@ -1,4 +1,4 @@
-package com.example.kelineyt.adapters
+package com.example.shop.adapters
 
 import android.util.Log
 import android.view.LayoutInflater
