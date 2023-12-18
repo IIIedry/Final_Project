@@ -17,6 +17,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.kelineyt.adapters.BestDealsAdapter
+import com.example.kelineyt.adapters.BestProductsAdapter
+import com.example.kelineyt.adapters.SpecialProductsAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
 
