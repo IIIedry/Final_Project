@@ -1,5 +1,6 @@
 package com.example.shop.fragments.settings
 
+import android.app.Fragment
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
