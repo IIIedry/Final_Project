@@ -9,8 +9,17 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.widget.NestedScrollView
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.Navigation.findNavController
+import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.shop.R
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collectLatest
 
 private val TAG = "MainCategoryFragment"
 
@@ -40,19 +49,20 @@ class MainCategoryFragment : Fragment(R.layout.fragment_main_category) {
         setupBestProducts()
 
         specialProductsAdapter.onClick = {
-            val b = Bundle().apply { putParcelable("product", it) }
-            findNavController().navigate(R.id.action_homeFragment_to_productDetailsFragment, b)
+            val b = Bundle().apply { putParcelable("product",it) }
+            findNavController().navigate(R.id.action_homeFragment_to_productDetailsFragment,b)
         }
 
         bestDealsAdapter.onClick = {
-            val b = Bundle().apply { putParcelable("product", it) }
-            findNavController().navigate(R.id.action_homeFragment_to_productDetailsFragment, b)
+            val b = Bundle().apply { putParcelable("product",it) }
+            findNavController().navigate(R.id.action_homeFragment_to_productDetailsFragment,b)
         }
 
         bestProductsAdapter.onClick = {
-            val b = Bundle().apply { putParcelable("product", it) }
-            findNavController().navigate(R.id.action_homeFragment_to_productDetailsFragment, b)
+            val b = Bundle().apply { putParcelable("product",it) }
+            findNavController().navigate(R.id.action_homeFragment_to_productDetailsFragment,b)
         }
+
 
         lifecycleScope.launchWhenStarted {
             viewModel.specialProducts.collectLatest {
@@ -124,46 +134,46 @@ class MainCategoryFragment : Fragment(R.layout.fragment_main_category) {
         })
     }
 
-        private fun setupBestProducts() {
-            bestProductsAdapter = BestProductsAdapter()
-            binding.rvBestProducts.apply {
-                layoutManager =
-                    GridLayoutManager(requireContext(), 2, GridLayoutManager.VERTICAL, false)
-                adapter = bestProductsAdapter
-            }
+    private fun setupBestProducts() {
+        bestProductsAdapter = BestProductsAdapter()
+        binding.rvBestProducts.apply {
+            layoutManager =
+                GridLayoutManager(requireContext(), 2, GridLayoutManager.VERTICAL, false)
+            adapter = bestProductsAdapter
         }
+    }
 
-        private fun setupBestDealsRv() {
-            bestDealsAdapter = BestDealsAdapter()
-            binding.rvBestDealsProducts.apply {
-                layoutManager =
-                    LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-                adapter = bestDealsAdapter
-            }
+    private fun setupBestDealsRv() {
+        bestDealsAdapter = BestDealsAdapter()
+        binding.rvBestDealsProducts.apply {
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            adapter = bestDealsAdapter
         }
+    }
 
-        private fun hideLoading() {
-            binding.mainCategoryProgressbar.visibility = View.GONE
-        }
+    private fun hideLoading() {
+        binding.mainCategoryProgressbar.visibility = View.GONE
+    }
 
-        private fun showLoading() {
-            binding.mainCategoryProgressbar.visibility = View.VISIBLE
-
-        }
-
-        private fun setupSpecialProductsRv() {
-            specialProductsAdapter = SpecialProductsAdapter()
-            binding.rvSpecialProducts.apply {
-                layoutManager =
-                    LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
-                adapter = specialProductsAdapter
-            }
-        }
-
-        override fun onResume() {
-            super.onResume()
-
-            showBottomNavigationView()
-        }
+    private fun showLoading() {
+        binding.mainCategoryProgressbar.visibility = View.VISIBLE
 
     }
+
+    private fun setupSpecialProductsRv() {
+        specialProductsAdapter = SpecialProductsAdapter()
+        binding.rvSpecialProducts.apply {
+            layoutManager =
+                LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+            adapter = specialProductsAdapter
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        showBottomNavigationView()
+    }
+
+}
