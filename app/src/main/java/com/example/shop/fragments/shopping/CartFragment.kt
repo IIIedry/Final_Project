@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.shop.R
 import com.example.shop.adapters.CartProductAdapter
+import com.example.shop.viewmodel.CartViewModel
 import kotlinx.coroutines.flow.collectLatest
 
 class CartFragment : Fragment(R.layout.fragment_cart) {

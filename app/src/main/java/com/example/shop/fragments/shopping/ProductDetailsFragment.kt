@@ -20,6 +20,7 @@ import com.example.shop.adapters.ColorsAdapter
 import com.example.shop.adapters.SizesAdapter
 import com.example.shop.adapters.ViewPager2Images
 import com.example.shop.data.order.CartProduct
+import com.example.shop.viewmodel.DetailsViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest

@@ -5,6 +5,8 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.example.kelineyt.viewmodel.factory.BaseCategoryViewModelFactoryFactory
+import com.example.shop.viewmodel.CategoryViewModel
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.firestore.FirebaseFirestore
 import dagger.hilt.android.AndroidEntryPoint
