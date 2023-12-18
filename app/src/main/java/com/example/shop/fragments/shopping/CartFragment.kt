@@ -7,6 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
@@ -70,5 +71,84 @@ class CartFragment : Fragment(R.layout.fragment_cart) {
             findNavController().navigate(action)
         }
 
+        lifecycleScope.launchWhenStarted {
+            viewModel.deleteDialog.collectLatest {
+                val alertDialog = AlertDialog.Builder(requireContext()).apply {
+                    setTitle("Delete item from cart")
+                    setMessage("Do you want to delete this item from your cart?")
+                    setNegativeButton("Cancel") { dialog, _ ->
+                        dialog.dismiss()
+                    }
+                    setPositiveButton("Yes") { dialog, _ ->
+                        viewModel.deleteCartProduct(it)
+                        dialog.dismiss()
+                    }
+                }
+                alertDialog.create()
+                alertDialog.show()
+            }
+        }
+
+        lifecycleScope.launchWhenStarted {
+            viewModel.cartProducts.collectLatest {
+                when (it) {
+                    is Resource.Loading -> {
+                        binding.progressbarCart.visibility = View.VISIBLE
+                    }
+                    is Resource.Success -> {
+                        binding.progressbarCart.visibility = View.INVISIBLE
+                        if (it.data!!.isEmpty()) {
+                            showEmptyCart()
+                            hideOtherViews()
+                        } else {
+                            hideEmptyCart()
+                            showOtherViews()
+                            cartAdapter.differ.submitList(it.data)
+                        }
+                    }
+                    is Resource.Error -> {
+                        binding.progressbarCart.visibility = View.INVISIBLE
+                        Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+                    }
+                    else -> Unit
+                }
+            }
+        }
+    }
+
+    private fun showOtherViews() {
+        binding.apply {
+            rvCart.visibility = View.VISIBLE
+            totalBoxContainer.visibility = View.VISIBLE
+            buttonCheckout.visibility = View.VISIBLE
+        }
+    }
+
+    private fun hideOtherViews() {
+        binding.apply {
+            rvCart.visibility = View.GONE
+            totalBoxContainer.visibility = View.GONE
+            buttonCheckout.visibility = View.GONE
+        }
+    }
+
+    private fun hideEmptyCart() {
+        binding.apply {
+            layoutCartEmpty.visibility = View.GONE
+        }
+    }
+
+    private fun showEmptyCart() {
+        binding.apply {
+            layoutCartEmpty.visibility = View.VISIBLE
+        }
+    }
+
+    private fun setupCartRv() {
+        binding.rvCart.apply {
+            layoutManager = LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
+            adapter = cartAdapter
+            addItemDecoration(VerticalItemDecoration())
+        }
     }
 }
