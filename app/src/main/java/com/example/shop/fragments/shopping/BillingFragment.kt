@@ -16,10 +16,14 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.load.engine.Resource
+import com.example.kelineyt.viewmodel.BillingViewModel
+import com.example.kelineyt.viewmodel.OrderViewModel
 import com.example.shop.R
 import com.example.shop.adapters.AddressAdapter
 import com.example.shop.adapters.BillingProductsAdapter
 import com.example.shop.data.order.CartProduct
+import com.example.shop.viewmodel.BillingViewModel
+import com.example.shop.viewmodel.OrderViewModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
