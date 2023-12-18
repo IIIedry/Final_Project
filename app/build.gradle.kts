@@ -2,7 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.plugin.serialization") version "1.7.20"
-//    id("kotlin-parcelize")
+    id("kotlin-parcelize")
 //    id("androidx.navigation.safeargs.kotlin")
 //    id("dagger.hilt.android.plugin")
 //    id("com.google.gms.google-services")
