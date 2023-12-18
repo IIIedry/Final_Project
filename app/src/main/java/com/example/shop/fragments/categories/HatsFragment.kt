@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.collectLatest
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class FurnitureFragment: BaseCategoryFragment() {
+class HatsFragment: BaseCategoryFragment() {
 
     @Inject
     lateinit var firestore: FirebaseFirestore
