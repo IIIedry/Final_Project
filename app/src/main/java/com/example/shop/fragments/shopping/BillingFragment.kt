@@ -100,3 +100,86 @@ class BillingFragment : Fragment() {
                 }
             }
         }
+
+        lifecycleScope.launchWhenStarted {
+            orderViewModel.order.collectLatest {
+                when (it) {
+                    is Resource.Loading -> {
+                        binding.buttonPlaceOrder.startAnimation()
+                    }
+
+                    is Resource.Success -> {
+                        binding.buttonPlaceOrder.revertAnimation()
+                        findNavController().navigateUp()
+                        Snackbar.make(requireView(), "Your order was placed", Snackbar.LENGTH_LONG)
+                            .show()
+                    }
+
+                    is Resource.Error -> {
+                        binding.buttonPlaceOrder.revertAnimation()
+                        Toast.makeText(requireContext(), "Error ${it.message}", Toast.LENGTH_SHORT)
+                            .show()
+                    }
+
+                    else -> Unit
+                }
+            }
+        }
+
+
+        billingProductsAdapter.differ.submitList(products)
+
+
+        binding.tvTotalPrice.text = "$ $totalPrice"
+
+
+        binding.buttonPlaceOrder.setOnClickListener {
+            if (selectedAddress == null) {
+                Toast.makeText(requireContext(), "Please select and address", Toast.LENGTH_SHORT)
+                    .show()
+                return@setOnClickListener
+            }
+            showOrderConfirmationDialog()
+        }
+
+    }
+
+    private fun showOrderConfirmationDialog() {
+        val alertDialog = AlertDialog.Builder(requireContext()).apply {
+            setTitle("Order items")
+            setMessage("Do you want to order your cart items?")
+            setNegativeButton("Cancel") { dialog, _ ->
+                dialog.dismiss()
+            }
+            setPositiveButton("Yes") { dialog, _ ->
+                val order = Order(
+                    OrderStatus.Ordered.status,
+                    totalPrice,
+                    products,
+                    selectedAddress!!
+                )
+                orderViewModel.placeOrder(order)
+                dialog.dismiss()
+            }
+        }
+        alertDialog.create()
+        alertDialog.show()
+    }
+
+
+    private fun setupAddressRv() {
+        binding.rvAddress.apply {
+            layoutManager = LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
+            adapter = addressAdapter
+            addItemDecoration(HorizontalItemDecoration())
+        }
+    }
+
+    private fun setupBillingProductsRv() {
+        binding.rvProducts.apply {
+            layoutManager = LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false)
+            adapter = billingProductsAdapter
+            addItemDecoration(HorizontalItemDecoration())
+        }
+    }
+}
