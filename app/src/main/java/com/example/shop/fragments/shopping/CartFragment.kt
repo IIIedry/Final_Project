@@ -13,6 +13,7 @@ import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.kelineyt.adapters.CartProductAdapter
 import com.example.shop.R
 import kotlinx.coroutines.flow.collectLatest
 
