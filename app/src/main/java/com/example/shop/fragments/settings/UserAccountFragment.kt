@@ -1,6 +1,5 @@
 package com.example.shop.fragments.settings
 
-import android.app.Fragment
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -12,15 +11,15 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.bumptech.glide.Glide
-import com.example.kelineyt.viewmodel.UserAccountViewModel
-import com.example.shop.data.order.User
+import com.example.shop.data.User
+import com.example.shop.databinding.FragmentUserAccountBinding
+import com.example.shop.dialog.setupBottomSheetDialog
+import com.example.shop.util.Resource
 import com.example.shop.viewmodel.UserAccountViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -58,14 +57,14 @@ class UserAccountFragment : Fragment() {
         lifecycleScope.launchWhenStarted {
             viewModel.user.collectLatest {
                 when (it) {
-                    is Resource.Loading -> {
+                    is Resource.Loading<*> -> {
                         showUserLoading()
                     }
-                    is Resource.Success -> {
+                    is Resource.Success<*> -> {
                         hideUserLoading()
-                        showUserInformation(it.data!!)
+                        showUserInformation(it.data!! as User)
                     }
-                    is Resource.Error -> {
+                    is Resource.Error<*> -> {
                         Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
                     }
                     else -> Unit
@@ -76,14 +75,14 @@ class UserAccountFragment : Fragment() {
         lifecycleScope.launchWhenStarted {
             viewModel.updateInfo.collectLatest {
                 when (it) {
-                    is Resource.Loading -> {
+                    is Resource.Loading<*> -> {
                         binding.buttonSave.startAnimation()
                     }
-                    is Resource.Success -> {
+                    is Resource.Success<*> -> {
                         binding.buttonSave.revertAnimation()
                         findNavController().navigateUp()
                     }
-                    is Resource.Error -> {
+                    is Resource.Error<*> -> {
                         binding.buttonSave.revertAnimation()
                         Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
                     }
@@ -116,7 +115,7 @@ class UserAccountFragment : Fragment() {
 
     }
 
-    private fun showUserInformation(data: User) {
+    private fun showUserInformation(data: Any) {
         binding.apply {
             Glide.with(this@UserAccountFragment).load(data.imagePath).error(ColorDrawable(Color.BLACK)).into(imageUser)
             edFirstName.setText(data.firstName)
