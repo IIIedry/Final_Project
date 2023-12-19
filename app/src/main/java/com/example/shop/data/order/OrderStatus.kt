@@ -1,4 +1,4 @@
-package com.example.kelineyt.data.order
+package com.example.shop.data.order
 
 sealed class OrderStatus(val status: String) {
 

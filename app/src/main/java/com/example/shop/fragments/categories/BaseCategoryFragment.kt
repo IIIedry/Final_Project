@@ -1,21 +1,19 @@
 package com.example.shop.fragments.categories
 
-import android.app.Fragment
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.kelineyt.adapters.BestProductsAdapter
 import com.example.shop.R
 import com.example.shop.adapters.BestProductsAdapter
+import com.example.shop.databinding.FragmentBaseCategoryBinding
+import com.example.shop.util.showBottomNavigationView
 
 open class BaseCategoryFragment: Fragment(R.layout.fragment_base_category) {
     private lateinit var binding: FragmentBaseCategoryBinding

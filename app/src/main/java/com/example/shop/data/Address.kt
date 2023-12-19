@@ -1,4 +1,4 @@
-package com.example.shop.data.order
+package com.example.shop.data
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

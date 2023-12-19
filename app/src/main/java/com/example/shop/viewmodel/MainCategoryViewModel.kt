@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bumptech.glide.load.engine.Resource
+import com.example.shop.data.Product
 import com.example.shop.data.order.Product
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.Query

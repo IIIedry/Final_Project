@@ -1,29 +1,28 @@
 package com.example.shop.fragments.categories
 
-import android.app.Fragment
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.kelineyt.adapters.BestDealsAdapter
-import com.example.kelineyt.adapters.BestProductsAdapter
-import com.example.kelineyt.adapters.SpecialProductsAdapter
-import com.example.kelineyt.viewmodel.MainCategoryViewModel
+import com.example.shop.R
 import com.example.shop.adapters.BestDealsAdapter
 import com.example.shop.adapters.BestProductsAdapter
 import com.example.shop.adapters.SpecialProductsAdapter
+import com.example.shop.data.Product
+import com.example.shop.databinding.FragmentHomeBinding
+import com.example.shop.databinding.FragmentMainCategoryBinding
+import com.example.shop.util.Resource
+import com.example.shop.util.showBottomNavigationView
 import com.example.shop.viewmodel.MainCategoryViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -74,14 +73,14 @@ class MainCategoryFragment : Fragment(R.layout.fragment_main_category) {
         lifecycleScope.launchWhenStarted {
             viewModel.specialProducts.collectLatest {
                 when (it) {
-                    is Resource.Loading -> {
+                    is Resource.Loading<*> -> {
                         showLoading()
                     }
-                    is Resource.Success -> {
-                        specialProductsAdapter.differ.submitList(it.data)
+                    is Resource.Success<*> -> {
+                        specialProductsAdapter.differ.submitList(it.data as MutableList<Product>?)
                         hideLoading()
                     }
-                    is Resource.Error -> {
+                    is Resource.Error<*> -> {
                         hideLoading()
                         Log.e(TAG, it.message.toString())
                         Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
@@ -94,14 +93,14 @@ class MainCategoryFragment : Fragment(R.layout.fragment_main_category) {
         lifecycleScope.launchWhenStarted {
             viewModel.bestDealsProducts.collectLatest {
                 when (it) {
-                    is Resource.Loading -> {
+                    is Resource.Loading<*> -> {
                         showLoading()
                     }
-                    is Resource.Success -> {
-                        bestDealsAdapter.differ.submitList(it.data)
+                    is Resource.Success<*> -> {
+                        bestDealsAdapter.differ.submitList(it.data as MutableList<Product>?)
                         hideLoading()
                     }
-                    is Resource.Error -> {
+                    is Resource.Error<*> -> {
                         hideLoading()
                         Log.e(TAG, it.message.toString())
                         Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
@@ -114,16 +113,16 @@ class MainCategoryFragment : Fragment(R.layout.fragment_main_category) {
         lifecycleScope.launchWhenStarted {
             viewModel.bestProducts.collectLatest {
                 when (it) {
-                    is Resource.Loading -> {
+                    is Resource.Loading<*> -> {
                         binding.bestProductsProgressbar.visibility = View.VISIBLE
                     }
-                    is Resource.Success -> {
-                        bestProductsAdapter.differ.submitList(it.data)
+                    is Resource.Success<*> -> {
+                        bestProductsAdapter.differ.submitList(it.data as MutableList<Product>?)
                         binding.bestProductsProgressbar.visibility = View.GONE
 
 
                     }
-                    is Resource.Error -> {
+                    is Resource.Error<*> -> {
                         Log.e(TAG, it.message.toString())
                         Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
                         binding.bestProductsProgressbar.visibility = View.GONE
@@ -144,8 +143,7 @@ class MainCategoryFragment : Fragment(R.layout.fragment_main_category) {
     private fun setupBestProducts() {
         bestProductsAdapter = BestProductsAdapter()
         binding.rvBestProducts.apply {
-            layoutManager =
-                GridLayoutManager(requireContext(), 2, GridLayoutManager.VERTICAL, false)
+            layoutManager = GridLayoutManager(requireContext(), 2, GridLayoutManager.VERTICAL, false)
             adapter = bestProductsAdapter
         }
     }

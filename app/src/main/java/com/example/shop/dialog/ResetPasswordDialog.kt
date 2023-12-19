@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment
 import com.example.shop.R
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
-
 fun Fragment.setupBottomSheetDialog(
     onSendClick: (String) -> Unit
 ){

@@ -1,6 +1,6 @@
 package com.example.shop.firebase
 
-import com.example.shop.data.order.CartProduct
+import com.example.shop.data.CartProduct
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 

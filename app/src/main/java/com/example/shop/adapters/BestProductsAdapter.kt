@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.shop.databinding.ProductRvItemBinding
 import com.example.shop.Price.getProductPrice
-import com.example.shop.data.order.Product
+import com.example.shop.data.Product
 
 class BestProductsAdapter : RecyclerView.Adapter<BestProductsAdapter.BestProductsViewHolder>() {
 

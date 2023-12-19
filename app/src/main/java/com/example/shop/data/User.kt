@@ -1,4 +1,4 @@
-package com.example.shop.data.order
+package com.example.shop.data
 
 data class User(
     val firstName: String,

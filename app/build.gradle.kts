@@ -5,6 +5,7 @@ plugins {
     id("kotlin-parcelize")
     id("androidx.navigation.safeargs.kotlin")
     id("com.google.gms.google-services")
+    kotlin("kapt") version "1.9.21"
 }
 
 android {
@@ -51,6 +52,7 @@ android {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
     }
+
 }
 
 dependencies {
@@ -80,6 +82,8 @@ dependencies {
     implementation ("androidx.navigation:navigation-compose:2.5.3")
     implementation ("androidx.compose.material:material-icons-extended:1.3.1")
 
+    implementation ("com.google.firebase:firebase-firestore-ktx:24.2.1")
+    implementation ("com.google.firebase:firebase-storage:20.1.0")
     implementation ("com.google.dagger:hilt-android:2.49")
     androidTestImplementation  ("com.google.dagger:hilt-android-testing:2.49")
     testImplementation ("com.google.dagger:hilt-android-testing:2.49")
@@ -94,5 +98,7 @@ dependencies {
     implementation ("com.google.dagger:hilt-android:2.38.1")
     implementation ("com.google.firebase:firebase-auth:21.0.6")
     implementation ("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.5.1")
-
+    implementation ("androidx.appcompat:appcompat:1.4.2")
+    implementation ("com.google.android.material:material:1.6.1")
+    implementation ("androidx.constraintlayout:constraintlayout:2.1.4")
 }

@@ -10,6 +10,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kelineyt.adapters.BillingProductsAdapter
+import com.example.shop.adapters.BillingProductsAdapter
 
 
 class OrderDetailFragment : Fragment() {

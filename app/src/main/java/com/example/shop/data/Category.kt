@@ -1,4 +1,4 @@
-package com.example.shop.data.order
+package com.example.shop.data
 
 sealed class Category(val category: String) {
 

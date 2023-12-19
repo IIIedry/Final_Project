@@ -21,6 +21,7 @@ import com.example.kelineyt.viewmodel.OrderViewModel
 import com.example.shop.R
 import com.example.shop.adapters.AddressAdapter
 import com.example.shop.adapters.BillingProductsAdapter
+import com.example.shop.data.CartProduct
 import com.example.shop.data.order.CartProduct
 import com.example.shop.viewmodel.BillingViewModel
 import com.example.shop.viewmodel.OrderViewModel

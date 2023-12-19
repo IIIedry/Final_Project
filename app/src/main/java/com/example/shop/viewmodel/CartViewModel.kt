@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bumptech.glide.load.engine.Resource
 import com.example.shop.Price.getProductPrice
+import com.example.shop.data.CartProduct
 import com.example.shop.data.order.CartProduct
 import com.example.shop.firebase.FirebaseCommon
 import com.google.firebase.auth.FirebaseAuth

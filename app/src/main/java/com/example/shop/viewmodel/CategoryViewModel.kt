@@ -3,6 +3,7 @@ package com.example.shop.viewmodel
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.bumptech.glide.load.engine.Resource
+import com.example.shop.data.Product
 import com.example.shop.data.order.Product
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.flow.MutableStateFlow

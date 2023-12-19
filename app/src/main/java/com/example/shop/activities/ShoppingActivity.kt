@@ -9,8 +9,8 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.shop.databinding.ActivityShoppingBinding
 import com.example.shop.util.Resource
-import com.example.shop.viewmodel.CartViewModel
 import com.example.shop.R
+import com.example.shop.viewmodel.CartViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
@@ -36,14 +36,12 @@ class ShoppingActivity : AppCompatActivity() {
                 when (it) {
                     is Resource.Success -> {
                         val count = it.data?.size ?: 0
-                        val bottomNavigation =
-                            findViewById<BottomNavigationView>(R.id.bottomNavigation)
+                        val bottomNavigation = findViewById<BottomNavigationView>(R.id.bottomNavigation)
                         bottomNavigation.getOrCreateBadge(R.id.cartFragment).apply {
                             number = count
                             backgroundColor = resources.getColor(R.color.g_blue)
                         }
                     }
-
                     else -> Unit
                 }
             }
