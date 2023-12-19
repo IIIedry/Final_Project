@@ -5,6 +5,9 @@ import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import com.example.shop.data.Category
+import com.example.shop.data.Product
+import com.example.shop.util.Resource
 import com.example.shop.viewmodel.CategoryViewModel
 import com.example.shop.viewmodel.factory.BaseCategoryViewModelFactoryFactory
 import com.google.android.material.snackbar.Snackbar
@@ -20,7 +23,7 @@ class ShirtsFragment : BaseCategoryFragment() {
     lateinit var firestore: FirebaseFirestore
 
     val viewModel by viewModels<CategoryViewModel> {
-        BaseCategoryViewModelFactoryFactory(firestore, Category.Chair)
+        BaseCategoryViewModelFactoryFactory(firestore, Category.Shirts)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -29,14 +32,14 @@ class ShirtsFragment : BaseCategoryFragment() {
         lifecycleScope.launchWhenStarted {
             viewModel.offerProducts.collectLatest {
                 when (it) {
-                    is Resource.Loading -> {
+                    is Resource.Loading<*> -> {
                         showOfferLoading()
                     }
-                    is Resource.Success -> {
-                        offerAdapter.differ.submitList(it.data)
+                    is Resource.Success<*> -> {
+                        offerAdapter.differ.submitList(it.data as MutableList<Product>?)
                         hideOfferLoading()
                     }
-                    is Resource.Error -> {
+                    is Resource.Error<*> -> {
                         Snackbar.make(requireView(), it.message.toString(), Snackbar.LENGTH_LONG)
                             .show()
                         hideOfferLoading()
@@ -49,14 +52,14 @@ class ShirtsFragment : BaseCategoryFragment() {
         lifecycleScope.launchWhenStarted {
             viewModel.bestProducts.collectLatest {
                 when (it) {
-                    is Resource.Loading -> {
+                    is Resource.Loading<*> -> {
                         showBestProductsLoading()
                     }
-                    is Resource.Success -> {
-                        bestProductsAdapter.differ.submitList(it.data)
+                    is Resource.Success<*> -> {
+                        bestProductsAdapter.differ.submitList(it.data as MutableList<Product>?)
                         hideBestProductsLoading()
                     }
-                    is Resource.Error -> {
+                    is Resource.Error<*> -> {
                         Snackbar.make(requireView(), it.message.toString(), Snackbar.LENGTH_LONG)
                             .show()
                         hideBestProductsLoading()
