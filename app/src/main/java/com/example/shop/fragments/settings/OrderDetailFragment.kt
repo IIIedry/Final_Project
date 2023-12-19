@@ -1,6 +1,5 @@
 package com.example.shop.fragments.settings
 
-import android.app.Fragment
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,9 +8,13 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.kelineyt.adapters.BillingProductsAdapter
 import com.example.shop.adapters.BillingProductsAdapter
-
+import com.example.shop.data.order.OrderStatus
+import com.example.shop.data.order.getOrderStatus
+import com.example.shop.databinding.FragmentOrderDetailBinding
+import com.example.shop.databinding.FragmentOrdersBinding
+import com.example.shop.util.VerticalItemDecoration
+import com.example.shop.util.hideBottomNavigationView
 
 class OrderDetailFragment : Fragment() {
     private lateinit var binding: FragmentOrderDetailBinding

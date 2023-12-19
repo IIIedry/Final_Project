@@ -1,22 +1,20 @@
 package com.example.shop.fragments.settings
 
-import android.app.Fragment
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.Navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.load.engine.Resource
-import com.example.kelineyt.adapters.AllOrdersAdapter
 import com.example.shop.adapters.AllOrdersAdapter
+import com.example.shop.databinding.FragmentOrdersBinding
+import com.example.shop.util.Resource
+import com.example.shop.util.hideBottomNavigationView
 import com.example.shop.viewmodel.AllOrdersViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collectLatest
